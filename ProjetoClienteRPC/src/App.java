@@ -3,27 +3,27 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) throws Exception {
     	//DEFINE A URL DO SERVIDOR
-        String urlServ = "http://localhost:1809"; 
+        String urlServ = "http://localhost:1809"; // Conectar com o servidor
         ClienteRPC rpc = new ClienteRPC(urlServ);
 
-        try (//permite solicitar valores ao usuário
+        try (//Permite a progama solicitar valores ao usuário
         Scanner entrada = new Scanner(System.in)) {                        /// CLIENTE
             int opcao;
 
             do{
-            //o usuário deve escolher quantas dimenssões a figura possui (padrão de menu para todas as opções)
+            //O usuário deve escolher quantas dimenssões das opções
+            //escolhi este formato para segregar mais as opções ao usiario fazendo de uma forma mais dinamica
             System.out.println("\n==========================");
-            System.out.println("Calculadora ATVD APD");
+            System.out.println("Calculadora ATVD A2 APD"); //atvd = atividade
             System.out.println("\nQual dimensão gostaria de medir?");
             System.out.println("\n(1)-> 2 Dimensão.");
             System.out.println("(2)-> 3 Dimensão.");
             System.out.println("(0)-> Desligar Programa.");
             System.out.println("\nDigite uma opção:");
-            //escolhi este formato para segregar mais as opções
 
             opcao = entrada.nextInt(); //solicita um valor ao usuário para escolher a figura
             switch(opcao){
-                //como as figuras 2D possuem somente area, o calculo da area ocorre diretamente após a próxima seleção, diferente dos 3D
+                //Como as Dimensões 2D possuem somente area, o calculo da area ocorre diretamente após a próxima seleção, diferente dos 3D
                 case 1:
                 System.out.println("\n==========================");
                 System.out.println("Opções pra 2 Dimensão:");
@@ -36,7 +36,7 @@ public class App {
                 int escolha = entrada.nextInt();
                     switch (escolha) {
 
-                        //baseado na escolha anterior um dos casos é chamado
+                        //Baseado na escolha anterior um dos casos é chamado para efetuar a conta
                         case 1:
                             System.out.println("\n==========================");
                             System.out.println("\nLado do quadrado:");
@@ -45,27 +45,29 @@ public class App {
                             break;
                         
                         case 2:
-                            //no caso do triangulo o calculo é feito usando 2 valores, portanto são pedidos a base e a altura do triangulo para o calculo
+                            //No caso do triangulo o calculo é feito usando 2 valores, portanto são pedidos a base e a altura do triangulo para o calculo
                             System.out.println("\nBase do triangulo:");
                             int base = entrada.nextInt();
                             System.out.println("Altura do triangulo:");
                             int altura = entrada.nextInt();
-                            System.out.println("\nA area do triangulo é: " + rpc.AreaTriangulo(base,altura)); /*as respostas finais são todas baseadas no que foi visto em sala,
+                            /*As respostas finais são todas baseadas no que foi visto em sala,
                             ou seja, todas funcionam da mesma forma, mundando apenas o valor que recebem*/
+                            System.out.println("\nA area do triangulo é: " + rpc.AreaTriangulo(base,altura)); 
                             break;
 
                         case 3:
-                            //mesma estrutura do quadrado mudando o lado pelo raio do circulo
+                            //Mesma estrutura do quadrado mudando o lado pelo raio do circulo
                             System.out.println("\nRaio do circulo:");
                             int raio = entrada.nextInt();
                             System.out.println("\nA area do circulo é: " + rpc.AreaCircunferencia(raio));
                             break;
                     
                         case 0:
-                            //caso digite 0 o programa se encerra
+                            //Caso digite 0 o programa se encerra
                             break;
                         
-                        default: //mensagem padrão quando o número digitado é inválido, retorna o programa para o menu inicial
+                        default: 
+                        //Mensagem padrão quando o número digitado é inválido, retorna o programa para o menu inicial
                             System.out.println("==========================");
                             System.out.println("\nValor inválido! Reiniciando Prorama...\n");
                             System.out.println("==========================\n");
@@ -74,7 +76,7 @@ public class App {
                 break;
 
                 case 2:
-                //no caso das figuras 3D é escolhido apenas qual a figura se deseja calcular
+                //No caso das Dimensãoes 3D é escolhido apenas qual a figura se deseja calcular
                 System.out.println("\n==========================");
                 System.out.println("Opções pra 3 Dimensão:");
                 System.out.println("\n(1)-> Cilindro.");
@@ -86,7 +88,7 @@ public class App {
                 escolha = entrada.nextInt();
                     switch (escolha) {
                         case 1:
-                            //após a escolha outro menu aparece e pede o calculo desejado
+                            //Após a escolha outro menu aparece e pede o calculo desejado
                             System.out.println("\n==========================");
                             System.out.println("\nOpções de calculos pra cilindros:");
                             System.out.println("(1)-> volume.");
@@ -98,8 +100,8 @@ public class App {
                             int x = entrada.nextInt();
                                 switch (x) {
                                     case 1:
-                                        //na escolha de 1 ele calcula o volume
-                                        //no caso do cilindro ele necessita de 2 valores que são requiridos na sequencia
+                                        //Na escolha de 1 ele calcula o volume
+                                        //No caso do cilindro ele necessita de 2 valores que são requiridos na sequencia
                                         System.out.println("\nDigite o raio do cilindro:");
                                         int raio = entrada.nextInt();
                                         System.out.println("Digite a altura do cilindro:");
@@ -108,7 +110,7 @@ public class App {
                                         break;
 
                                     case 2:
-                                        //na escolha de 2 ele calcula a area
+                                        //Na escolha de 2 ele calcula a area
                                         System.out.println("\nDigite o raio do cilindro:");
                                         raio = entrada.nextInt();
                                         System.out.println("Digite a altura do cilindro:");
@@ -117,7 +119,7 @@ public class App {
                                         break;
 
                                     case 3:
-                                        //na escolha de 3 ele pede o raio e a altura para calcular tanto a area quanto o volume
+                                        //Na escolha de 3 ele pede o raio e a altura para calcular tanto a area quanto o volume
                                         System.out.println("\nDigite o raio do cilindro:");
                                         raio = entrada.nextInt();
                                         System.out.println("Digite a altura do cilindro:");
@@ -138,7 +140,7 @@ public class App {
                                 break;
                         
                         case 2:
-                            //estrutura identica a do cilindro com as adaptações necessárias para o calculo da esfera
+                            //Estrutura identica a do cilindro com as adaptações necessárias para o calculo da esfera
                             System.out.println("\n==========================");
                             System.out.println("\nOpções de calculos pra esferas:");
                             System.out.println("(1)-> volume.");
@@ -181,7 +183,7 @@ public class App {
                             
 
                         case 3:
-                            //a mesma estrutura novamente e com os valores necessários para o cubo
+                            //A mesma estrutura novamente e com os valores necessários para o cubo
                             System.out.println("\n==========================");
                             System.out.println("\nOpções de calculo do cubo:");
                             System.out.println("(1)-> volume.");
@@ -224,7 +226,7 @@ public class App {
                         }
                     break;
                     case 0:
-                        //sai do menu e encerra o programa
+                        //Sai do loop do menu e encerra o programa
                         System.out.println("\n\n==========================");
                         System.out.println("Desligando Programa...");
                         System.out.println("==========================");
@@ -238,7 +240,7 @@ public class App {
                 }
             }while(opcao != 0);
         }
-        //confirmação que o programa chegou ao fim
+        //Confirmação ao usuario que o programa chegou ao fim e não esta mais funcionado
     System.out.println("\n\n===========================");
     System.out.println("O aplicativo calculadora foi desligado!");
     System.out.println("===========================");

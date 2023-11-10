@@ -8,35 +8,39 @@ public class ClienteRPC {
 	
     public ClienteRPC(String urlServidor) {
 		try {
-			//configura o cliente para que ele possa se conectar ao servidor
+			//Configura o cliente para que ele possa se conectar ao servidor e consiga fazer as contas
 			XmlRpcClientConfigImpl configuracaoCliente = new XmlRpcClientConfigImpl();
             configuracaoCliente.setServerURL(new URL(urlServidor));
-			//seta a configuração no cliente
+
+			//Set as configuraçãoes do cliente 
             cliente = new XmlRpcClient();
             cliente.setConfig(configuracaoCliente);
         } catch (Exception exception) {
             System.err.println("JavaServer: " + exception);
         }
     }
-    //recebe o valor digitado no menu da area do quadrado e manda para o servidor RPC
+    //O Valor recebido o ser digitado no menu da area do quadrado e manda para o servidor RPC
     public int AreaQuadrado(int lado) throws Exception {
-        //cria o objeto parametros com o valor de lado
+        //Cria o objeto parametros com o valor de lado
         Object[] parametros = new Object[]{Integer.valueOf(lado)}; 
-        //manda o parametros para o servidor calcular e salva em resultado
+
+        //E manda o parametros para o servidor calcular e salva em resultado
         Integer resultado = (Integer) cliente.execute("Calc.AreaQuadrado", parametros); 
-        //retorna o valor do calculo feito pelo servidor, será o valor final que aparecerá na tela
+
+        //Assim se retorna o valor do calculo feito pelo servidor, será o valor final que aparecerá na tela
         return resultado;
     }
-    //a estrutura de todos os calculos seguintes permanece a mesma com pequenas diferenças
+    //A estrutura de todos os calculos seguintes permanece a mesma com pequenas diferenças
     public int AreaTriangulo(int base, int altura) throws Exception {
         Object[] parametros = new Object[]{Integer.valueOf(base), Integer.valueOf(altura)};
         Integer resultado = (Integer) cliente.execute("Calc.AreaTrianguloRetangulo", parametros);
         return resultado;
     }
-    //double é utilizado pois o calculo utiliza PI, que não é aceito por int
+    //Double é utilizado pois o calculo utiliza PI, que não é aceito por int
     public double AreaCircunferencia(int raio) throws Exception {
         Object[] parametros = new Object[]{Integer.valueOf(raio)};
-        // por conta de ser double o resultado deixar de ser Interger
+        
+        //Por conta de ser double o resultado deixar de ser Interger
         Double resultado = (Double) cliente.execute("Calc.AreaCircunferencia", parametros);
         return resultado;
     }
